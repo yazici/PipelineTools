@@ -12,7 +12,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import os, json, inspect
 
-from PyQt5.QtCore import QObject, QMetaObject
+from PyQt5.QtCore import QObject
 
 class ObjectEncoder(json.JSONEncoder):
 
@@ -40,10 +40,10 @@ class ObjectEncoder(json.JSONEncoder):
 class Iterator(object):
 
     def __init__(self, sorted_dict):
-        self._dict = sorted_dict
-        self._keys = sorted(self._dict.keys())
-        self._nr_items = len(self._keys)
-        self._idx = 0
+        self._dict                                  = sorted_dict
+        self._keys                                  = sorted(self._dict.keys())
+        self._nr_items                              = len(self._keys)
+        self._idx                                   = 0
 
     def __iter__(self):
         return self
@@ -52,18 +52,28 @@ class Iterator(object):
         if self._idx >= self._nr_items:
             raise StopIteration
 
-        key = self._keys[self._idx]
-        value = self._dict[key]
+        key                                         = self._keys[self._idx]
+        value                                       = self._dict[key]
         self._idx += 1
 
         return key, value
 
-    __next__ = next
+    __next__                                        = next
 
 
 class DAMG(QObject):
-    pass
 
+    _data                                           = dict()
+
+    def __str__(self):
+        return json.dumps({self.__class__.__name__: self.data}, indent=4)
+
+    def __repr__(self):
+        return json.dumps({self.__class__.__name__: self.data}, indent=4)
+
+    @property
+    def data(self):
+        return self._data
 
 # -------------------------------------------------------------------------------------------------------------
 # Created by panda on 23/01/2019 - 6:40 PM

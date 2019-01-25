@@ -16,8 +16,10 @@ import os
 __envKey__ = 'DAMGTEAM'
 __envVal__ = os.getcwd()
 
-from ultils import System_EnvVariables
-env = System_EnvVariables(__envKey__, __envVal__)
+from pprint import pprint
+from cores.environment import System_EnvVariables
+env = System_EnvVariables(__envKey__, __envVal__, 'add')
+pprint(env)
 
 # -------------------------------------------------------------------------------------------------------------
 # Created by panda on 21/01/2019 - 8:15 PM
