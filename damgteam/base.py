@@ -75,6 +75,10 @@ class DAMG(QObject):
     def data(self):
         return self._data
 
+    @data.setter
+    def data(self, newData):
+        self._data = newData
+
 # -------------------------------------------------------------------------------------------------------------
 # Created by panda on 23/01/2019 - 6:40 PM
 # © 2017 - 2018 DAMGteam. All rights reserved
